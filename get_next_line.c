@@ -6,7 +6,7 @@
 /*   By: pghajard <pghajard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 11:16:21 by pghajard          #+#    #+#             */
-/*   Updated: 2024/07/01 08:11:30 by pghajard         ###   ########.fr       */
+/*   Updated: 2024/10/14 13:52:04 by pghajard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ char	*get_next_line(int fd)
 
 	bytes_read = 1;
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
+		return (free(txt), NULL);
 	txt = fd_reader(fd, bytes_read, txt);
 	if (!txt || !*txt)
 		return (ft_free(&txt), NULL);
@@ -97,19 +97,3 @@ char	*get_next_line(int fd)
 		return (ft_free(&line), ft_free(&txt), NULL);
 	return (line);
 }
-// #include <fcntl.h>
-// #include <stdio.h>
-
-// int main(void) {
-//     int fd = open("test.txt", O_RDWR);
-//     if (fd == -1)
-//         return -1;
-
-//     char *line;
-//     while ((line = get_next_line(fd)) != NULL) {
-//         printf("[%s]\n", line);
-//         free(line);
-//     }
-//     close(fd);
-//     return 0;
-// }
