@@ -6,7 +6,7 @@
 /*   By: pghajard <pghajard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 11:16:21 by pghajard          #+#    #+#             */
-/*   Updated: 2024/10/14 13:52:04 by pghajard         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:12:41 by pghajard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ static char	*fd_reader(int fd, int bytes_read, char *txt)
 	while (bytes_read != 0)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		if (bytes_read == -1)
+		if (bytes_read == -1) // Error
 			return (ft_free(&buffer), ft_free(&txt), NULL);
-		buffer[bytes_read] = '\0';
+		buffer[bytes_read] = '\0'; 
 		temp = txt;
 		txt = ft_strjoin(txt, buffer);
 		ft_free(&temp);
-		if (!txt)
+		if (!txt) 
 			return (ft_free(&buffer), ft_free(&txt), NULL);
 		if (ft_new_line(buffer))
 		{
