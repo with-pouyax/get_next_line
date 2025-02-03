@@ -1,5 +1,5 @@
 # get_next_line
-![code](https://i.pinimg.com/736x/56/67/93/5667936906181a6fbe0501b471e2b5bd.jpg)
+![code](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3BrcDBob2hpNjBjOG95ZmxyMXkzaWgzeHRudXlrNmFkdzl4YWtoZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3q2XB76CaWPggiNW/giphy.gif)
 
 ## Overview
 `get_next_line` is a function that reads a file descriptor line by line until the end of the file (EOF). This project is part of the 42 curriculum and helps in understanding file I/O operations, buffer management, and memory allocation.
