@@ -63,9 +63,7 @@ int main() {
 - Works for a single file descriptor.
 - Reads one line at a time.
 
-### Bonus
-- Handles multiple file descriptors at the same time.
-- Properly frees memory after each call.
+
 
 ## Allowed Functions
 - `read`, `malloc`, `free`
@@ -76,6 +74,3 @@ int main() {
 
 ## License
 This project is under the MIT License.
-
-## Author
-**Pouya** - [GitHub](https://github.com/yourusername)
