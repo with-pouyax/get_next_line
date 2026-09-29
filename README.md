@@ -1,76 +1,22 @@
 # get_next_line
-![code](https://newsroom.siliconslopes.com/content/images/size/w1000/2018/10/code.jpg)
 
-## Overview
-`get_next_line` is a function that reads a file descriptor line by line until the end of the file (EOF). This project is part of the 42 curriculum and helps in understanding file I/O operations, buffer management, and memory allocation.
+A 42 C exercise that returns the next line from a file descriptor on each call. It combines buffered reads with a static remainder for later calls.
 
-## Features
-- Reads from a file descriptor one line at a time.
-- Handles multiple file descriptors simultaneously.
-- Manages memory efficiently to avoid leaks.
-- Works with any buffer size defined by `BUFFER_SIZE`.
+## Interface
 
-## Installation
-Clone the repository:
-```sh
-git clone https://github.com/yourusername/get_next_line.git
-cd get_next_line
-```
-
-## Usage
-Compile with a main function:
-```sh
-gcc -Wall -Wextra -Werror -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c main.c -o gnl
-```
-Run the executable with a file:
-```sh
-./gnl input.txt
-```
-
-## Function Prototype
 ```c
 char *get_next_line(int fd);
 ```
-- `fd`: The file descriptor to read from.
-- Returns the next line read from the file, or `NULL` if there is nothing more to read or an error occurs.
 
-## Implementation Details
-- Uses a static buffer to store read data between calls.
-- Reads characters in chunks (`BUFFER_SIZE`) and appends them until a newline is found.
-- Allocates memory dynamically to store the result.
-- Handles edge cases like empty files, multiple newlines, and incorrect file descriptors.
+The caller frees each returned line. `NULL` marks end of file or a read/allocation error. Set `BUFFER_SIZE` at compile time or use the header default.
 
-## Example
-```c
-#include <stdio.h>
-#include <fcntl.h>
-#include "get_next_line.h"
+## Run the included harness
 
-int main() {
-    int fd = open("test.txt", O_RDONLY);
-    char *line;
-    while ((line = get_next_line(fd))) {
-        printf("%s", line);
-        free(line);
-    }
-    close(fd);
-    return 0;
-}
+```sh
+cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c main.c -o gnl
+./gnl
 ```
 
-## Mandatory vs Bonus
-### Mandatory
-- Works for a single file descriptor.
-- Reads one line at a time.
+The included [`main.c`](main.c) reads the repository's [`test.txt`](test.txt) and additionally checks that each line ends in `1`; it does not accept a filename argument. To use the line reader in another program, compile the two implementation files with your own main.
 
-
-
-## Allowed Functions
-- `read`, `malloc`, `free`
-
-## Notes
-- Ensure `BUFFER_SIZE` is properly defined during compilation.
-- Free allocated memory to prevent leaks.
-
-## License
-This project is under the MIT License.
+**Current scope:** The implementation uses one static buffer, so it should not be presented as independently maintaining multiple file descriptors. [License](LICENSE).
